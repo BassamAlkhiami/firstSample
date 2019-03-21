@@ -26,6 +26,7 @@ import com.mohammed.zwayen.ptotonbleapp.Model.BLE_UUIDs;
 public class BLEManager
 {
     private final static String TAG = "BLEManager tag";
+    private final static String BLUETOOTH_DEVICE_NAME = "Esp32 DevKit";
     private final static int REQUEST_ENABLE_BT = 1;
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 2;
     private static final BLEManager BALE_MANAGER = new BLEManager();
@@ -37,6 +38,10 @@ public class BLEManager
 
     public static BLEManager getInstance() {
         return BALE_MANAGER;
+    }
+
+    private BLEManager() {
+
     }
 
     public void initBle(Activity ctx)
@@ -55,6 +60,7 @@ public class BLEManager
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             ctxActivity.startActivityForResult(enableIntent,REQUEST_ENABLE_BT);
         }
+        Log.d(TAG,"checkBTEnable");
     }
 
     private void checkBTPermission()
@@ -74,10 +80,7 @@ public class BLEManager
             builder.show();
         }
 
-
-    }
-    private BLEManager() {
-
+        Log.d(TAG,"checkBTPermission");
     }
 
     // Device scan callback.
@@ -85,7 +88,7 @@ public class BLEManager
 
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
-            if(result.getDevice().getName().equals("Esp32 DevKit"))
+            if(result.getDevice().getName().equals(BLUETOOTH_DEVICE_NAME))
             {
                 stopScanning();
                 espdevice = result.getDevice();

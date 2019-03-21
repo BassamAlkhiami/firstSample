@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PtoTon BLE App</string>
+    <string name="scanBtn">Scan! </string>
+    <string name="stopScanBtn">Stop Scan! </string>
+    <string name="startHearingTest">Manual Hearing Test </string>
+    <string name="createUserbtn">Create User</string>
+    <string name="Next">Next ..</string>
 </resources>
