@@ -40,6 +40,12 @@ public class CachManeger
         users.add(u4);
     }
 
+    public void addUser(User usr)
+    {
+        users.add(usr);
+    }
+
+
     public void storeData(String dataToStore)
     {
         try {
@@ -54,10 +60,10 @@ public class CachManeger
         catch (IOException e) {e.printStackTrace();}
 
     }
+
     public void createUser(User usr)
     {
         users.add(usr);
-
     }
 
     public ArrayList<User> getUsers()

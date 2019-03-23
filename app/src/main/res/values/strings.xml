@@ -5,4 +5,39 @@
     <string name="startHearingTest">Manual Hearing Test </string>
     <string name="createUserbtn">Create User</string>
     <string name="Next">Next ..</string>
+    <string name="linearCmdBtn">Linear.</string>
+    <string name="p1CmdBtn">P1.</string>
+    <string name="p2CmdBtn">P2.</string>
+
+    <string name="baseSwitchOn">Base ON.</string>
+    <string name="baseSwitchOff">Base OFF.</string>
+    <string name="compSwitchOn">Comp ON.</string>
+    <string name="compSwitchOff">Comp OFF.</string>
+    <string name="intensity">Intensity:</string>
+    <string name="intensity20">20%</string>
+    <string name="intensity40">40%</string>
+    <string name="intensity60">60%</string>
+    <string name="intensity80">80%</string>
+    <string name="intensity100">100%</string>
+    <string name="voiceControlPlus">+</string>
+    <string name="voiceControlMinus">-</string>
+    <string name="voiceControlPlusHalf">+0.5dB</string>
+    <string name="iheard">I Heared</string>
+    <string name="sendHearingTest">Apply Result</string>
+
+
+    <string-array name="freqs">
+
+        <item>63</item>
+        <item>125</item>
+        <item>250</item>
+        <item>500</item>
+        <item>1K</item>
+        <item>2K</item>
+        <item>4K</item>
+        <item>8K</item>
+        <item>16K</item>
+
+    </string-array>
+
 </resources>

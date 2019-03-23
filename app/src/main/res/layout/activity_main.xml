@@ -1,44 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/scanBtn"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="300dp"
-        android:text="@string/scanBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
 
-    <Button
-        android:id="@+id/stopScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="150dp"
-        android:text="@string/stopScanBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/scanBtn"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/linearCmdBtn"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/linearCmdBtn" />
+
+            <EditText
+                android:id="@+id/linearOffest"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="+0.95"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/p1CmdBtn"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/p1CmdBtn" />
+
+            <EditText
+                android:id="@+id/p1Offset"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:hint="-5.0"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/p2Cmdbtn"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/p2CmdBtn" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/startHearingTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="150dp"
-        android:text="@string/startHearingTest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopScan" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="100dp"
+        android:text="@string/startHearingTest" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBassState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="@string/baseSwitchOff" />
+
+        <Switch
+            android:id="@+id/baseSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:showText="false"
+            android:textOff="@string/baseSwitchOff"
+            android:textOn="@string/baseSwitchOn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="300dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCompState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="@string/compSwitchOff" />
+        <Switch
+            android:id="@+id/compSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:showText="false"
+            android:textOff="@string/compSwitchOff"
+            android:textOn="@string/compSwitchOn" />
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/sbVoiceVolume"
+        android:theme="@style/Base.Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="25dp"
+        android:max="100" />
+
+    <TextView
+        android:id="@+id/tvVoiceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="475dp"
+        android:text="TextView" />
+
+    <RadioGroup
+        android:id="@+id/rgIntensity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="210dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rbIntensity20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity20" />
+
+        <RadioButton
+            android:id="@+id/rbIntensity40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity40" />
+
+        <RadioButton
+            android:id="@+id/rbIntensity60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity60" />
+
+        <RadioButton
+            android:id="@+id/rbIntensity80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity80" />
+
+        <RadioButton
+            android:id="@+id/rbIntensity100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/intensity100" />
+    </RadioGroup>
+
+
+</RelativeLayout>
+

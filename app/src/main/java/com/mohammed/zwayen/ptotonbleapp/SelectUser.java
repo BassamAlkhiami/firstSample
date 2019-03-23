@@ -18,18 +18,25 @@ import java.util.ArrayList;
 
 public class SelectUser extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener , CreateUserDialog.SelectUserDialogListener {
 
-
+    BLEManager bleman ;
     CachManeger localStorage = CachManeger.getIntstance();
+    ArrayAdapter<User> usersListAdapter;
+    ListView lvCurrentUsers;
+    ArrayList<User> currentUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_user);
-        CachManeger localStorage = CachManeger.getIntstance();
+        //TODO: add code here to BLE connection
+        bleman = BLEManager.getInstance();
+        bleman.initBle(this);
+        //bleman.sendTestMessage("from SelectUser Activity MSG!!");
+        //TODO: start scn for BLE Device here
         localStorage.CachManagerInit(this);
-        ArrayList<User> currentUsers = localStorage.getUsers();
-        ListAdapter usersAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,currentUsers);
-        ListView lvCurrentUsers = findViewById(R.id.lvCurrentUser);
-        lvCurrentUsers.setAdapter(usersAdapter);
+        currentUsers = localStorage.getUsers();
+        usersListAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,currentUsers);
+        lvCurrentUsers = findViewById(R.id.lvCurrentUser);
+        lvCurrentUsers.setAdapter(usersListAdapter);
         lvCurrentUsers.setOnItemClickListener(this);
         Button createUserbtn = findViewById(R.id.btnCreateUser);
         createUserbtn.setOnClickListener(this);
@@ -39,6 +46,9 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         User selectedUser = (User) parent.getItemAtPosition(position);
         Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
+        Intent startMainActivity = new Intent(this,MainActivity.class);
+        startMainActivity.putExtra("selectedUser",position);
+        startActivity(startMainActivity);
 
     }
 
@@ -53,7 +63,6 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
 
             break;
             case R.id.selectUserNextBtn:
-                Intent intent = new Intent(this,MainActivity.class);
 
             break;
         }
@@ -61,6 +70,11 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void applyName(String usrName,int idx) {
+        User newUser = new User(usrName);
+        localStorage.addUser(newUser);
+        //TODO: create this user aslo in the proton device!
+        currentUsers = localStorage.getUsers();
+        usersListAdapter.notifyDataSetChanged();
         Toast.makeText(this, usrName, Toast.LENGTH_SHORT).show();
     }
 }

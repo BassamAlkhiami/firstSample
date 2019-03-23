@@ -34,6 +34,7 @@ public class BLEManager
     private BluetoothAdapter btAdapter;
     private BluetoothLeScanner btScanner;
     private BluetoothDevice espdevice;
+    private BluetoothGatt localGatt;
     private Activity ctxActivity;
 
     public static BLEManager getInstance() {
@@ -52,6 +53,7 @@ public class BLEManager
         btScanner = btAdapter.getBluetoothLeScanner();
         checkBTEnable();
         checkBTPermission();
+        startScanning();
     }
 
     private void checkBTEnable()
@@ -110,6 +112,7 @@ public class BLEManager
             int STATE_CONNECTED = 2;
             int STATE_DISCONNECTING = 3;
             */
+            if (status == BluetoothGatt.GATT_SUCCESS)
             if (newState == BluetoothProfile.STATE_CONNECTED)
                 gatt.discoverServices();
             super.onConnectionStateChange(gatt, status, newState);
@@ -120,6 +123,7 @@ public class BLEManager
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
 
             Log.d("gattCallback", status+" ");
+            localGatt = gatt;
             BluetoothGattService service = gatt.getService(BLE_UUIDs.GPIO_SERVIS);
             BluetoothGattCharacteristic characteristic = service.getCharacteristic(BLE_UUIDs.LED_CHARACTERISITIC);
             String str = "mohammed";
@@ -146,6 +150,16 @@ public class BLEManager
         }
     };
 
+
+    public void sendTestMessage(String msg)
+    {
+        BluetoothGattService service = localGatt.getService(BLE_UUIDs.GPIO_SERVIS);
+        BluetoothGattCharacteristic characteristic = service.getCharacteristic(BLE_UUIDs.LED_CHARACTERISITIC);
+        characteristic.setValue(msg.getBytes());
+        localGatt.writeCharacteristic(characteristic);
+        localGatt.disconnect();
+
+    }
 
     public void startScanning() {
         Log.d(TAG,"start scanning");
